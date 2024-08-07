@@ -1,27 +1,7 @@
 def soma(a, b):
+    """Função para somar dois números."""
     return a + b
 
-def main():
-    print("Calculadora de Soma")
-
-    while True:
-        try:
-            num1 = float(input("Digite o primeiro número: "))
-            num2 = float(input("Digite o segundo número: "))
-        except ValueError:
-            print("Entrada inválida. Por favor, digite números válidos.")
-            continue
-
-        resultado = soma(num1, num2)
-        print(f"A soma de {num1} e {num2} é {resultado}")
-
-        proxima = input("Deseja realizar outra soma? (sim/não): ").strip().lower()
-        if proxima != 'sim':
-            print("Obrigado por usar a calculadora. Até mais!")
-            break
-
-if __name__ == "__main__":
-    main()
 def divide(a, b):
     """Função para realizar a divisão e lidar com divisão por zero."""
     if b != 0:
@@ -29,33 +9,57 @@ def divide(a, b):
     else:
         return "Não é possível dividir por zero"
 
+def multiplicar(a, b):
+    """Função para multiplicar dois números."""
+    return a * b
+
 def main():
-    """Função principal que gerencia a interação com o usuário."""
-    print("Calculadora Simples de Divisão")
+    """Função principal que gerencia a interação com o usuário para várias operações."""
+    print("Calculadora Simples")  # Exibe uma mensagem de boas-vindas
 
     while True:
+        # Exibe o menu de opções para o usuário
+        print("\nEscolha a operação:")
+        print("1. Soma")
+        print("2. Divisão")
+        print("3. Multiplicação")
+        operacao = input("Digite o número da operação desejada (1, 2 ou 3): ").strip()
+
+        # Verifica se a opção escolhida é válida
+        if operacao not in ['1', '2', '3']:
+            print("Opção inválida. Por favor, escolha 1, 2 ou 3.")
+            continue
+
         try:
             # Solicita os números ao usuário
-            num1 = float(input("Digite o dividendo: "))
-            num2 = float(input("Digite o divisor: "))
+            num1 = float(input("Digite o primeiro número: "))
+            num2 = float(input("Digite o segundo número: "))
 
-            # Realiza a divisão
-            resultado = divide(num1, num2)
+            # Realiza a operação escolhida
+            if operacao == '1':
+                resultado = soma(num1, num2)
+                print(f"A soma de {num1} e {num2} é {resultado}")
 
-            # Exibe o resultado
-            if isinstance(resultado, str):
-                print(resultado)  # Mensagem de erro para divisão por zero
-            else:
-                print(f"O resultado de {num1} dividido por {num2} é {resultado:.2f}")
+            elif operacao == '2':
+                resultado = divide(num1, num2)
+                if isinstance(resultado, str):
+                    print(resultado)  # Mensagem de erro para divisão por zero
+                else:
+                    print(f"O resultado de {num1} dividido por {num2} é {resultado:.2f}")
+
+            elif operacao == '3':
+                resultado = multiplicar(num1, num2)
+                print(f"O resultado da multiplicação de {num1} e {num2} é {resultado}")
 
         except ValueError:
             print("Entrada inválida. Por favor, insira números válidos.")
 
-        # Pergunta se o usuário quer realizar outra divisão
-        proxima = input("Deseja realizar outra divisão? (sim/não): ").strip().lower()
+        # Pergunta se o usuário deseja realizar outra operação
+        proxima = input("Deseja realizar outra operação? (sim/não): ").strip().lower()
         if proxima != 'sim':
             print("Obrigado por usar a calculadora. Até mais!")
             break
 
+# Verifica se o script está sendo executado diretamente
 if __name__ == "__main__":
     main()
