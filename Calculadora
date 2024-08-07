@@ -1,0 +1,24 @@
+def soma(a, b):
+    return a + b
+
+def main():
+    print("Calculadora de Soma")
+
+    while True:
+        try:
+            num1 = float(input("Digite o primeiro número: "))
+            num2 = float(input("Digite o segundo número: "))
+        except ValueError:
+            print("Entrada inválida. Por favor, digite números válidos.")
+            continue
+
+        resultado = soma(num1, num2)
+        print(f"A soma de {num1} e {num2} é {resultado}")
+
+        proxima = input("Deseja realizar outra soma? (sim/não): ").strip().lower()
+        if proxima != 'sim':
+            print("Obrigado por usar a calculadora. Até mais!")
+            break
+
+if __name__ == "__main__":
+    main()
